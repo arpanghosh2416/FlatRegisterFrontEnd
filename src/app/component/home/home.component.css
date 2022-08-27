@@ -1,8 +1,13 @@
+* {
+  box-sizing: border-box;
+}
 .column {
-    float: left;
-    width: 50%;
-    padding: 0 50px;
+    float: middle;
+    width: 33.33%;
+    padding: 0 140px;
   }
+
+ 
   
   /* Remove extra left and right margins, due to padding in columns */
   .row {margin: 0 -5px;}
@@ -12,11 +17,15 @@
     content: "";
     display: table;
     clear: both;
+    padding: 2 50px;
   }  
+.body{
+  align-items:baseline;
+}  
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
+    max-width: 253px;
+    margin: thick;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
   }
@@ -34,7 +43,15 @@
     background-color: rgb(53, 32, 216);
     text-align: center;
     cursor: pointer;
-    width: 100%;
+    width: 50%;
     font-size: 18px;
   }
   
+  /* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 30px;
+  }
+}
