@@ -7,6 +7,8 @@ import { LoginComponent } from './component/login/login.component';
 import { NoPageComponent } from './component/no-page/no-page.component';
 import { RegisterComponent } from './component/register/register.component';
 
+const applicationName = 'Flat Registration';
+
 const routes: Routes = [
   {
     path:'',
@@ -15,33 +17,45 @@ const routes: Routes = [
   },
   {
     path:'home',
-    component:HomeComponent
-
+    component:HomeComponent,
+    data: {
+      title: `Home | ${applicationName}`
+    }
   },
   {
     path:'about',
-    component:AboutComponent
-    
+    component:AboutComponent,
+    data: {
+      title: `About | ${applicationName}`
+    }
   },
   {
     path:'login',
-    component:LoginComponent
-    
+    component:LoginComponent,
+    data: {
+      title: `Login | ${applicationName}`
+    }
   },
   {
     path:'register',
-    component:RegisterComponent
-    
+    component:RegisterComponent,
+    data: {
+      title: `Register | ${applicationName}`
+    }
   },
   {
     path:'contact',
-    component:ContactComponent
-    
+    component:ContactComponent,
+    data: {
+      title: `Contact | ${applicationName}`
+    }
   },
   {
     path:'**',
-    component:NoPageComponent
-    
+    component:NoPageComponent,
+    data: {
+      title: `404 Not Found | ${applicationName}`
+    }
   }
 
 

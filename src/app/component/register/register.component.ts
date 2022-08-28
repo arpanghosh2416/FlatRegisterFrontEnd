@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/service/user/user.service';
 
 @Component({
   selector: 'app-register',
@@ -9,27 +10,40 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
 
   errormessage:boolean=false;
-  UserSignIn=new FormGroup({
-    uname:new FormControl('',[Validators.required])
+  successMessage:boolean=false;
+
+  registerForm = new FormGroup({
+    username:new FormControl('',),
+    password:new FormControl('',),
+    cpass:new FormControl('',),
+    userRole:new FormControl('NORMAL')
   });
-  constructor() { }
+
+  constructor(
+    private _userService: UserService
+  ) {
+  }
 
   ngOnInit(): void {
   }
 
-  user(){
-    if(this.isformValid()) console.log("sign in done");
-    else{
-       console.log("Error found");
-       this.errormessage=true;
-    }
+  closeSuccessMessage(): void {
+    this.successMessage = false;
   }
-  
-  public get uname() : FormControl {
-    return this.UserSignIn.get("uname") as FormControl
+
+  registerOnClick(): void {
+    console.log('register works', this.registerForm.value);
+    this._userService.register(this.registerForm.value).subscribe(
+      response => {
+        console.log('response', response);
+        this.successMessage = true;
+        this.registerForm.reset();
+      },
+      error => {
+        console.log('error', error);
+        this.successMessage = false;
+      }
+    );
   }
-  isformValid(): boolean {
-    if(this.uname.errors!=null) return false;
-    return true;
-}
+
 }

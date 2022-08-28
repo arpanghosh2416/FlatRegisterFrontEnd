@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth/auth.service';
+import { TokenService } from 'src/app/service/token/token.service';
 
 
 @Component({
@@ -18,7 +21,11 @@ export class LoginComponent implements OnInit {
   showWrongMessage: boolean = false;
   showSuccessMessage: boolean = false;
 
-  constructor() {
+  constructor(
+    private _router: Router,
+    private _authService: AuthService,
+    private _tokenService: TokenService
+  ) {
   }
 
   ngOnInit(): void {
@@ -39,8 +46,20 @@ export class LoginComponent implements OnInit {
   userLogin(): void {
     console.log("Login Works")
     console.log(this.loginform.value)
-    
-    
+    this._authService.login(this.loginform.value).subscribe(
+      response => {
+        console.log('response', response);
+        console.log('JWT', response.jwt);
+        this.showWrongMessage = false;
+        this._tokenService.storeToken(response.jwt);
+        this._router.navigateByUrl('/home');
+        // location.reload();
+      },
+      error => {
+        console.log('error', error);
+        this.showWrongMessage = true;
+      }
+    );
   }
 
 }
