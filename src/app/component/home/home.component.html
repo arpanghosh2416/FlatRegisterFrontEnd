@@ -7,8 +7,15 @@
       <div class="card-body">
         <h5 class="card-title">Flat Number {{flat.flatId}}</h5>
         <p class="card-text">Present at storey number {{flat.storeyNumber}} and The total price of this flat is
-          {{flat.price}} + 18% GST</p>
-        <p><button type="submit" class="btn btn-primary">Buy / Register</button></p>
+          {{flat.price}} + 18% GST
+        </p>
+        <b *ngIf="flat.soldOut else elseBlockFlatSoldOut"><i>SOLD OUT</i></b>
+        <ng-template #elseBlockFlatSoldOut>
+          <button *ngIf="!isLoggedIn else elseBlock1" type="submit" class="btn btn-primary" routerLink="/login">Buy / Register</button>
+          <ng-template #elseBlock1>
+            <button *ngIf="isLoggedIn" type="submit" class="btn btn-primary" routerLink="/register-flat/{{flat.flatId}}">Buy / Register</button>
+          </ng-template>
+        </ng-template>
       </div>
     </div>
   </div>

@@ -20,7 +20,12 @@ export class TokenService {
   fetchToken(): string | null {
     return sessionStorage.getItem('flat-webapp-token');
   }
-  
+
+  isOwner(): boolean {
+    let ownerStatus = localStorage.getItem('ownerStatus');
+    return (ownerStatus === null) ? false : true;
+  }
+
   isTokenExist(): boolean {
     return (this.fetchToken() === null || this.fetchToken() === undefined || this.fetchToken() === '') ? false : true;
   }

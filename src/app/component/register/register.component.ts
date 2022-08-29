@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
 
   registerOnClick(): void {
     console.log('register works', this.registerForm.value);
+    this.registerForm.value.userRole = 'NORMAL';
     this._userService.register(this.registerForm.value).subscribe(
       response => {
         console.log('response', response);

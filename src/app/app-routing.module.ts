@@ -52,7 +52,7 @@ const routes: Routes = [
     }
   },
   {
-    path:'register-flat',
+    path:'register-flat/:flatId',
     component:RegisterFlatComponent,
     data: {
       title: `Register Flat | ${applicationName}`
@@ -65,8 +65,6 @@ const routes: Routes = [
       title: `404 Not Found | ${applicationName}`
     }
   }
-
-
 ];
 
 @NgModule({
