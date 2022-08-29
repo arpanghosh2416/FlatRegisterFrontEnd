@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -17,9 +18,6 @@ import { RegisterComponent } from './component/register/register.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterFlatComponent } from './component/register-flat/register-flat.component';
 import { AuthInterceptor } from './interceptor/auth/auth.interceptor';
-
-
-
 
 @NgModule({
   declarations: [
@@ -39,6 +37,7 @@ import { AuthInterceptor } from './interceptor/auth/auth.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DataTablesModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

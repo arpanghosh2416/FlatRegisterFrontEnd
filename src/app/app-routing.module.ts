@@ -7,6 +7,7 @@ import { LoginComponent } from './component/login/login.component';
 import { NoPageComponent } from './component/no-page/no-page.component';
 import { RegisterFlatComponent } from './component/register-flat/register-flat.component';
 import { RegisterComponent } from './component/register/register.component';
+import { UserListComponent } from './component/user-list/user-list.component';
 import { AuthGuard } from './guard/auth/auth.guard';
 import { DeauthGuard } from './guard/deauth/deauth.guard';
 
@@ -63,6 +64,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: `Register Flat | ${applicationName}`
+    }
+  },
+  {
+    path:'user-list',
+    component:UserListComponent,
+    data: {
+      title: `All Users | ${applicationName}`
     }
   },
   {

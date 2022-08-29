@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/service/user/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  constructor() { }
+  users: any = [];
+
+  constructor(
+    private _userService: UserService
+  ) {
+  }
 
   ngOnInit(): void {
+    setTimeout(function(){
+      $(function(){
+        $('#datatable-example').DataTable();
+      });
+    }, 500);
+
+    this.fetchAllUsers();
+  }
+
+  fetchAllUsers(): void {
+    this._userService.getAllUsers().subscribe(
+      response => {
+        console.log('response', response);
+        this.users = response;
+      },
+      error => {
+        console.log('error', error);
+      }
+    );
   }
 
 }
