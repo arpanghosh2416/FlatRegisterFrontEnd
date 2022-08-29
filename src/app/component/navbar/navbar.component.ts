@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit, DoCheck {
   }
 
   logoutOnClick(): void {
+    localStorage.clear();
     this._authService.logout();
     this._router.navigateByUrl('/login');
   }

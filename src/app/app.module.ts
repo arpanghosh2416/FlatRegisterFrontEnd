@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
-import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './component/footer/footer.component';
@@ -15,6 +15,8 @@ import { ContactComponent } from './component/contact/contact.component';
 import { AboutComponent } from './component/about/about.component';
 import { RegisterComponent } from './component/register/register.component';
 import { LoginComponent } from './component/login/login.component';
+import { RegisterFlatComponent } from './component/register-flat/register-flat.component';
+import { AuthInterceptor } from './interceptor/auth/auth.interceptor';
 
 
 
@@ -32,6 +34,7 @@ import { LoginComponent } from './component/login/login.component';
     NoPageComponent,
     ContactComponent,
     AboutComponent,
+    RegisterFlatComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,13 @@ import { LoginComponent } from './component/login/login.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

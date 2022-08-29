@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/service/user/user.service';
 
 @Component({
@@ -9,15 +9,15 @@ import { UserService } from 'src/app/service/user/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  errormessage:boolean=false;
-  successMessage:boolean=false;
-
   registerForm = new FormGroup({
     username:new FormControl('',),
     password:new FormControl('',),
     cpass:new FormControl('',),
     userRole:new FormControl('NORMAL')
   });
+
+  errormessage:boolean = false;
+  successMessage:boolean = false;
 
   constructor(
     private _userService: UserService

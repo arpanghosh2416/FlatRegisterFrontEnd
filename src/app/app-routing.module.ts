@@ -5,6 +5,7 @@ import { ContactComponent } from './component/contact/contact.component';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { NoPageComponent } from './component/no-page/no-page.component';
+import { RegisterFlatComponent } from './component/register-flat/register-flat.component';
 import { RegisterComponent } from './component/register/register.component';
 
 const applicationName = 'Flat Registration';
@@ -48,6 +49,13 @@ const routes: Routes = [
     component:ContactComponent,
     data: {
       title: `Contact | ${applicationName}`
+    }
+  },
+  {
+    path:'register-flat',
+    component:RegisterFlatComponent,
+    data: {
+      title: `Register Flat | ${applicationName}`
     }
   },
   {

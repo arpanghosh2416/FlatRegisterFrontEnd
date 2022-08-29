@@ -1,6 +1,6 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { TokenService } from 'src/app/service/token/token.service';
 
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     username:new FormControl('',[Validators.required]),
     password: new FormControl('',[Validators.required])
   });
+
   showMessage: boolean = false;
   showWrongMessage: boolean = false;
   showSuccessMessage: boolean = false;
@@ -49,9 +50,12 @@ export class LoginComponent implements OnInit {
     this._authService.login(this.loginform.value).subscribe(
       response => {
         console.log('response', response);
+        console.log('USER', response.user);
         console.log('JWT', response.jwt);
         this.showWrongMessage = false;
         this._tokenService.storeToken(response.jwt);
+        localStorage.setItem('username', response.user.username);
+        localStorage.setItem('userRole', response.user.userRole);
         this._router.navigateByUrl('/home');
         // location.reload();
       },
