@@ -7,6 +7,8 @@ import { LoginComponent } from './component/login/login.component';
 import { NoPageComponent } from './component/no-page/no-page.component';
 import { RegisterFlatComponent } from './component/register-flat/register-flat.component';
 import { RegisterComponent } from './component/register/register.component';
+import { AuthGuard } from './guard/auth/auth.guard';
+import { DeauthGuard } from './guard/deauth/deauth.guard';
 
 const applicationName = 'Flat Registration';
 
@@ -26,6 +28,7 @@ const routes: Routes = [
   {
     path:'about',
     component:AboutComponent,
+    canActivate: [AuthGuard],
     data: {
       title: `About | ${applicationName}`
     }
@@ -33,6 +36,7 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent,
+    canActivate: [DeauthGuard],
     data: {
       title: `Login | ${applicationName}`
     }
@@ -40,6 +44,7 @@ const routes: Routes = [
   {
     path:'register',
     component:RegisterComponent,
+    canActivate: [DeauthGuard],
     data: {
       title: `Register | ${applicationName}`
     }
@@ -47,6 +52,7 @@ const routes: Routes = [
   {
     path:'contact',
     component:ContactComponent,
+    canActivate: [AuthGuard],
     data: {
       title: `Contact | ${applicationName}`
     }
@@ -54,6 +60,7 @@ const routes: Routes = [
   {
     path:'register-flat/:flatId',
     component:RegisterFlatComponent,
+    canActivate: [AuthGuard],
     data: {
       title: `Register Flat | ${applicationName}`
     }

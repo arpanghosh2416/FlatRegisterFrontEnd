@@ -32,4 +32,9 @@ export class AuthService {
     return (this._tokenService.isTokenExist()) ? true : false;
   }
 
+  isSuperuser(): boolean {
+    let adminStatus = localStorage.getItem('userRole');
+    return (adminStatus === 'ROLE_ADMIN') ? true : false;
+  }
+
 }
