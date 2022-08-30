@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, DoCheck, OnInit } from '@angular/core';
+
 import { AuthService } from 'src/app/service/auth/auth.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 })
 export class NavbarComponent implements OnInit, DoCheck {
 
+  isOwner: boolean = false;
   isLoggedIn: boolean = false;
+  isSuperuser: boolean = false;
 
   constructor(
     private _router: Router,
@@ -17,16 +20,21 @@ export class NavbarComponent implements OnInit, DoCheck {
   ) {
   }
 
-  ngDoCheck(): void {
-    this.isLoggedIn = this._authService.isLoggedIn();
-    console.log('I am Logged in status:', this._authService.isLoggedIn());
-  }
-
   ngOnInit(): void {
   }
 
+  ngDoCheck(): void {
+    this.verifyUser();
+  }
+
+  verifyUser(): void {
+    this.isOwner = this._authService.isOwner();
+    this.isLoggedIn = this._authService.isLoggedIn();
+    this.isSuperuser = this._authService.isSuperuser();
+    // console.log('[login, admin, owner]', `[${this.isLoggedIn}, ${this.isSuperuser}, ${this.isOwner}]`);
+  }
+
   logoutOnClick(): void {
-    localStorage.clear();
     this._authService.logout();
     this._router.navigateByUrl('/login');
   }

@@ -25,7 +25,13 @@ export class AuthService {
   }
 
   logout(): void {
+    this._tokenService.removeUser();
+    this._tokenService.removeOwner();
     this._tokenService.removeToken();
+  }
+
+  isOwner(): boolean {
+    return (this._tokenService.isUserOwner()) ? true : false;
   }
 
   isLoggedIn(): boolean {
@@ -33,8 +39,10 @@ export class AuthService {
   }
 
   isSuperuser(): boolean {
-    let adminStatus = localStorage.getItem('userRole');
-    return (adminStatus === 'ROLE_ADMIN') ? true : false;
+    if (this._tokenService.isUserExist()) {
+      let userRole = this._tokenService.fetchUser().userRole;
+      return (userRole === 'ROLE_ADMIN') ? true : false;
+    } else return false;
   }
 
 }

@@ -19,12 +19,12 @@ export class FlatService {
   ) {
   }
 
-  getFlatById(flatId: number): Observable<any> {
-    return this._httpClient.get<any>(`${this._getFlatByIdAPI}/${flatId}`);
-  }
-
   getAllFlats(): Observable<any> {
     return this._httpClient.get<any>(this._getAllFlatsAPI);
+  }
+
+  getFlatById(flatId: number): Observable<any> {
+    return this._httpClient.get<any>(`${this._getFlatByIdAPI}/${flatId}`);
   }
 
 }

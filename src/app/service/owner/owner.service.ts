@@ -14,6 +14,7 @@ export class OwnerService {
   private _getOwnerByIdAPI = `${this._baseURL}/get-owner`;
   private _createOwnerAPI = `${this._baseURL}/register-flat`;
   private _getAllOwnersAPI = `${this._baseURL}/get-all-owners`;
+  private _getOwnerByFlatIdAPI = `${this._baseURL}/get-flat-owner`;
 
   constructor(
     private _httpClient: HttpClient
@@ -26,6 +27,10 @@ export class OwnerService {
 
   createOwner(request: any): Observable<any> {
     return this._httpClient.post<any>(this._createOwnerAPI, request);
+  }
+
+  getOwnerByFlatId(flatId: number): Observable<any> {
+    return this._httpClient.get<any>(`${this._getOwnerByFlatIdAPI}/${flatId}`);
   }
 
   getOwnerById(ownerId: number): Observable<any> {

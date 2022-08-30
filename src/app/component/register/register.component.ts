@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+
 import { UserService } from 'src/app/service/user/user.service';
 
 @Component({
@@ -9,11 +10,11 @@ import { UserService } from 'src/app/service/user/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm = new FormGroup({
-    username:new FormControl('',),
-    password:new FormControl('',),
-    cpass:new FormControl('',),
-    userRole:new FormControl('NORMAL')
+  registerForm: FormGroup = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+    userRole: new FormControl(''),
+    cpass: new FormControl('')
   });
 
   errormessage:boolean = false;
@@ -32,9 +33,10 @@ export class RegisterComponent implements OnInit {
   }
 
   registerOnClick(): void {
-    console.log('register works', this.registerForm.value);
+    let request = this.registerForm.value;
+    console.log('register works:', request);
     this.registerForm.value.userRole = 'NORMAL';
-    this._userService.register(this.registerForm.value).subscribe(
+    this._userService.register(request).subscribe(
       response => {
         console.log('response', response);
         this.successMessage = true;

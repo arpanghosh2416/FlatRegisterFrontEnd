@@ -1,6 +1,6 @@
 <div class="container col-md-6 my-5">
-  <h1 class="mb-5 text-center" style="color:red">Register Flat Number {{flat.flatId}}</h1>
-  <form [formGroup]="registerFlatForm" (ngSubmit)="registerFlatOnClick()" class="needs-validation" novalidate>
+  <h1 class="mb-5 text-center" style="color:red">Register as Owner</h1>
+  <form [formGroup]="registerOwnerForm" (ngSubmit)="registerOwnerOnClick()" class="needs-validation" novalidate>
     <div class="row g-3">
       <div class="col-md-6 position-relative">
         <label for="fname" class="form-label">First Name</label>
@@ -23,25 +23,9 @@
         <label for="phone" class="form-label">Phone Number</label>
         <input type="text" class="form-control" placeholder="Phone Number" id="phone" name="phone" formControlName="phone">
       </div>
-      
-      <div class="mb-3">
-        <label for="inputGender" class="form-label">Do you want to stay now?</label>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="true" name="stay" formControlName="stay">
-          <label class="form-check-label" for="exampleRadios1">
-            Yes
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="false" name="stay" formControlName="stay">
-          <label class="form-check-label" for="exampleRadios2">
-            No
-          </label>
-        </div>
-      </div>
 
       <div class="col-12">
-        <button type="submit" class="btn btn-primary">Register Flat</button>
+        <button type="submit" class="btn btn-primary">Register as Owner</button>
       </div>
     </div>
   </form>

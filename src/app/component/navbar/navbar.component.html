@@ -16,6 +16,9 @@
           <a class="nav-link" *ngIf="isLoggedIn" aria-current="page" routerLink="/contact" routerLinkActive="active">Contact</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" *ngIf="isLoggedIn && !isOwner" aria-current="page" routerLink="/register-owner" routerLinkActive="active">Register as Owner</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" *ngIf="!isLoggedIn" aria-current="page" routerLink="/login" routerLinkActive="active">Login</a>
         </li>
         <li class="nav-item">

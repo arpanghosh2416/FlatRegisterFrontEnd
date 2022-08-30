@@ -1,4 +1,4 @@
-<div class="container col-md-6 my-5">
+<div class="container col-md-6 my-4">
 	<h1 style="color:red" align="center">Create an Account</h1><br>
 	<form [formGroup]="registerForm" (ngSubmit)="registerOnClick()">
 		<div class="row g-3">
@@ -8,18 +8,6 @@
 				<button (click)="closeSuccessMessage()" type="button" class="btn-close" data-bs-dismiss="alert"
 					aria-label="Close"></button>
 			</div>
-
-			<!-- <div class="col-12 position-relative">
-				<label for="username" class="form-label">Full User Name</label>
-				<input type="text" class="form-control" formControlName="fname" id="username" placeholder="User Full Name"
-					aria-label="User Full Name">
-				<div class="text-danger" *ngIf="username.errors!=null && (username.touched || username.dirty || errormessage)">
-					User Name cannot be empty.
-				</div>
-				<div class="text-danger" *ngIf="username.errors==null">
-					Looks Good!
-				</div>
-			</div> -->
 
 			<div class="row-md-6">
 				<label for="username" class="form-label">Username</label>
