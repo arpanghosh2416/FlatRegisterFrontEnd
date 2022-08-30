@@ -1,23 +1,22 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
-import { AppRoutingModule } from './app-routing.module';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { HomeComponent } from './component/home/home.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { NoPageComponent } from './component/no-page/no-page.component';
-import { OwnerListComponent } from './component/owner-list/owner-list.component';
-import { UserListComponent } from './component/user-list/user-list.component';
 import { ContactComponent } from './component/contact/contact.component';
 import { AboutComponent } from './component/about/about.component';
 import { RegisterComponent } from './component/register/register.component';
 import { LoginComponent } from './component/login/login.component';
-
-
-
+import { AuthInterceptor } from './interceptor/auth/auth.interceptor';
+import { RegisterOwnerComponent } from './component/register-owner/register-owner.component';
+import { FlatViewComponent } from './component/flat-view/flat-view.component';
 
 @NgModule({
   declarations: [
@@ -26,20 +25,29 @@ import { LoginComponent } from './component/login/login.component';
     RegisterComponent,
     HomeComponent,
     NavbarComponent,
-    OwnerListComponent,
-    UserListComponent,
     FooterComponent,
     NoPageComponent,
     ContactComponent,
     AboutComponent,
+    RegisterOwnerComponent,
+    FlatViewComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DataTablesModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+}
