@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const DOMAIN = 'http://localhost:8888'
-// const DOMAIN = 'https://flatregister.herokuapp.com'
+//const DOMAIN = 'http://localhost:8888'
+const DOMAIN = 'https://flatregister.herokuapp.com'
 
 @Injectable({
   providedIn: 'root'
